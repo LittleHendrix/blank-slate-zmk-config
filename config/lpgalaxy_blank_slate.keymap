@@ -17,7 +17,7 @@
 
 #define NAV_L 1
 #define NUM_L 2
-#define SYM_L 3
+#define SYS_L 3
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
@@ -36,13 +36,9 @@
 #endif
     };
 
-    macros {
-      ZMK_MACRO(thumbs_up,
-		wait-ms = <1>;
-		tap-ms = <5>;
-                bindings = <&kp PLUS &kp COLON &kp PLUS &kp N1 &kp COLON &kp RET>;
-		)
-    };
+    // macros {
+    //   // Add custom macros here if needed
+    // };
     
     tap_dances {
     	shifty: shift_caps_word {
@@ -54,13 +50,37 @@
 	};
     };
 
+    behaviors {
+        // Hyper modifier (Ctrl+Shift+Alt+GUI) when held, key when tapped
+        hyper: hyper_modifier {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HYPER_MOD";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        // Meh modifier (Ctrl+Shift+Alt) when held, key when tapped
+        meh: meh_modifier {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MEH_MOD";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
 // Conditional layer only when we have less thumb keys
 #ifdef TBLE_DUAL_2U
     cond_layers {
         compatible = "zmk,conditional-layers";
 	tri {
 	    if-layers = <NUM_L NAV_L>;
-	    then-layer = <SYM_L>;
+	    then-layer = <SYS_L>;
         };
     };
 #endif
@@ -71,21 +91,16 @@
         base_layer {
             label = "Base";
             bindings = <
-#ifdef QWERTY_BASE
- &kp ESC    &kp Q      &kp W      &kp E       &kp R          &kp T          &kp Y            &kp U          &kp I       &kp O      &kp P         &kp BKSP
- &kp TAB    &kp A      &kp S      &kp D       &kp F          &kp G          &kp H            &kp J          &kp K       &kp L      &kp SEMI      &kp QUOT
- &kp LSHFT  &kp Z      &kp X      &kp C       &kp V          &kp B          &kp N            &kp M          &kp COMMA   &kp DOT    &kp FSLH      &kp RET
-#else
- &kp ESC    &kp Q      &kp W      &kp F       &kp P          &kp B          &kp J            &kp L          &kp U       &kp Y      &kp QUOT      &kp BKSP
- &kp TAB    &kp A      &kp R      &kp S       &kp T          &kp G          &kp M            &kp N          &kp E       &kp I      &kp O         &kp QUOT
- &kp LSHFT  &kp Z      &kp X      &kp C       &kp D          &kp V          &kp K            &kp H          &kp COMMA   &kp DOT    &kp SEMI      &kp RET
-#endif
+// Ported from QMK drop_planck7.json layer 0
+ &hyper LC(LS(LA(LGUI))) TAB  &kp Q  &kp W       &kp E        &kp R           &kp T            &kp Y            &kp U        &kp I        &kp O         &kp P             &kp BKSP
+ &meh LC(LS(LALT)) ESC        &kp A  &mt LALT S  &mt LSHFT D  &kp F           &kp G            &kp H            &kp J        &mt RSHFT K  &mt LALT L    &mt RGUI SEMI     &hyper LC(LS(LA(LGUI))) QUOT
+ &shifty                      &kp Z  &kp X       &kp C        &kp V           &kp B            &kp N            &kp M        &kp COMMA    &kp DOT       &kp FSLH          &kp RET
 #ifdef TBLE_DUAL_2U
- &kp LCTRL  &kp LGUI   &kp LALT   &mo NAV_L         &shifty                        &kp SPACE                &mo NUM_L   &kp LALT   &kp RGUI      &kp RSHIFT
+ &mo SYS_L  &kp LCTRL  &kp LALT   &kp LGUI         &lt NUM_L BKSP                   &mt LCTRL SPACE             &mo NAV_L    &lt SYS_L LEFT  &kp DOWN  &kp UP  &kp RIGHT
 #elif defined(TBLE_MIT)
- &kp LCTRL  &mo SYM_L   &kp LGUI  &kp LALT    &mo NAV_L          &kp SPACE                   &mo NUM_L      &kp LEFT    &kp UP     &kp DOWN      &kp RIGHT
+ &mo SYS_L  &kp LCTRL  &kp LALT   &kp LGUI    &lt NUM_L BKSP     &mt LCTRL SPACE              &mo NAV_L    &lt SYS_L LEFT  &kp DOWN  &kp UP  &kp RIGHT
 #else
- &kp LCTRL  &mo SYM_L   &kp LGUI  &kp LALT    &mo NAV_L      &kp SPACE      &kp RET          &mo NUM_L      &kp LEFT    &kp UP     &kp DOWN      &kp RIGHT
+ &mo SYS_L  &kp LCTRL  &kp LALT   &kp LGUI    &lt NUM_L BKSP  &mt LCTRL SPACE  &mt LCTRL SPACE  &mo NAV_L  &lt SYS_L LEFT  &kp DOWN  &kp UP  &kp RIGHT
 #endif
             >;
         };
@@ -93,15 +108,16 @@
         nav_layer {
             label = "Nav";
             bindings = <
-&bt BT_CLR &trans     &trans     &trans      &trans          &trans       &trans     &trans         &trans      &trans     &trans     &kp DEL
-&trans     &trans     &trans     &trans      &trans          &trans       &trans     &kp LEFT       &kp DOWN    &kp UP     &kp RIGHT  &trans
-&trans     &bt BT(0)  &bt BT(1)  &bt BT(2)   &bt BT(3)       &bt BT(4)    &trans     &kp HOME       &kp PG_DN   &kp PG_UP  &kp END    &trans
+// Ported from QMK layer 3 (Nav + Symbols)
+&kp TILDE  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR   &kp RPAR   &kp DEL
+&kp LCTRL  &kp TAB   &kp HOME  &kp PG_DN &kp PG_UP &kp END      &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT  &kp SQT    &kp DQT
+&kp LGUI   &none     &none     &none     &kp TILDE &none        &none          &kp KP_SLASH     &none      &none      &none      &none
 #ifdef TBLE_DUAL_2U
-&trans  &trans        &trans     &trans              &trans                    &trans       &trans         &trans &trans &trans
+&none      &none     &kp LSHFT &kp LALT            &kp RET                  &kp RET    &none      &none      &none      &none
 #elif defined(TBLE_MIT)
-&trans  &trans        &trans     &trans      &trans                &trans             &trans      &trans   &trans &trans &trans
+&none      &none     &kp LSHFT &kp LALT  &kp RET           &kp RET                     &none      &none      &none      &none      &none
 #else
-&trans  &trans        &trans     &trans      &trans          &trans       &trans    &trans  &trans         &trans &trans &trans
+&none      &none     &kp LSHFT &kp LALT  &kp RET   &kp RET      &none      &none      &none      &none      &none      &none
 #endif
             >;
         };
@@ -109,31 +125,33 @@
         num_layer {
             label = "Num";
             bindings = <
-&trans     &kp LBKT   &trans &trans &trans    &kp RBKT    &kp C_PREV    &kp N7     &kp N8      &kp N9       &trans     &trans
-&trans     &kp MINUS  &trans &trans &trans    &kp EQUAL   &kp C_NEXT    &kp N4     &kp N5      &kp N6       &trans     &trans
-&trans     &kp GRAVE  &trans &trans &trans    &kp BSLH    &trans        &kp N1     &kp N2      &kp N3       &trans     &trans
+// Ported from QMK layer 4 (Num + Operators) - custom number layout
+&kp GRAVE  &kp N5    &kp N2    &kp N3    &kp N4    &kp N1        &kp N0    &kp N7    &kp N8    &kp N9    &kp N6     &kp DEL
+&kp LCTRL  &kp LT    &kp LBRC  &kp RBRC  &kp GT    &kp LA(N3)    &kp UNDER &kp EQUAL &kp LBKT  &kp RBKT  &kp MINUS  &kp PIPE
+&kp LGUI   &none     &none     &none     &kp GRAVE &none         &kp BSLH  &none     &none     &none     &none      &none
 #ifdef TBLE_DUAL_2U
-&trans  &trans       &trans     &kp N0              &trans                 &trans            &trans         &trans &trans &trans
+&none      &none     &kp LSHFT &none               &kp ESC                 &kp ESC   &kp LALT  &mo SYS_L &none      &none
 #elif defined(TBLE_MIT)
-&trans  &trans       &trans     &kp N0      &trans           &none            &trans        &kp DEL      &trans &trans &trans
+&none      &none     &kp LSHFT &none     &kp ESC           &kp ESC                   &kp LALT  &mo SYS_L &none     &none      &none
 #else
-&trans  &trans       &trans     &kp N0      &trans    &none         &none     &kp ESC        &kp DEL      &trans &trans &trans
+&none      &none     &kp LSHFT &none     &kp ESC   &kp ESC       &kp LALT  &mo SYS_L &none     &none     &none      &none
 #endif
             >;
         };
 
-        sym_layer {
-            label = "Sym";
+        sys_layer {
+            label = "Sys";
             bindings = <
-&trans     &kp LBRC   &kp AMPS   &kp STAR    &kp LPAR     &kp RBRC     &trans     &trans    &trans       &trans       &trans     &bootloader
-&trans     &kp COLON  &kp DLLR   &kp PRCNT   &kp CARET    &kp PLUS     &trans     &trans    &trans       &trans       &trans     &trans
-&trans     &kp TILDE  &kp EXCL   &kp AT      &kp HASH     &kp PIPE     &trans     &trans    &trans       &trans       &trans     &trans
+// Ported from QMK layer 5 (System + Function keys)
+&bootloader  &none  &kp F7  &kp F8  &kp F9  &kp F10    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &kp LC(LS(LG(N4)))
+&sys_reset   &none  &kp F4  &kp F5  &kp F6  &kp F11    &none         &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    &kp C_PP      &kp LG(LS(N4))
+&none        &none  &kp F1  &kp F2  &kp F3  &kp F12    &none         &none         &none         &none         &none         &kp LG(LS(N3))
 #ifdef TBLE_DUAL_2U
-&trans &trans        &trans     &kp RPAR                &trans                    &trans       &trans         &trans &trans &trans
+&bt BT_CLR   &none  &none   &none           &kp F13                  &none         &none         &none         &none         &kp LG(LS(N5))
 #elif defined(TBLE_MIT)
-&trans &trans        &trans     &kp RPAR        &trans                &trans             &trans      &trans   &trans &trans &trans
+&bt BT_CLR   &none  &none   &none   &kp F13         &none                          &none         &none         &none         &none         &kp LG(LS(N5))
 #else
-&trans &trans        &trans     &kp RPAR        &trans          &trans       &trans    &trans  &trans         &trans &trans &trans
+&bt BT_CLR   &none  &none   &none   &kp F13 &none      &none         &none         &none         &none         &none         &kp LG(LS(N5))
 #endif
             >;
         };
