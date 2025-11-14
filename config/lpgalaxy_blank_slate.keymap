@@ -36,9 +36,18 @@
 #endif
     };
 
-    // macros {
-    //   // Add custom macros here if needed
-    // };
+    macros {
+        ctrl_alt_del: ctrl_alt_del {
+            compatible = "zmk,behavior-macro";
+            label = "CTRL_ALT_DEL";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL &kp LALT>
+                , <&macro_tap &kp DEL>
+                , <&macro_release &kp LCTRL &kp LALT>
+                ;
+        };
+    };
     
     tap_dances {
     	shifty: shift_caps_word {
@@ -155,9 +164,9 @@
             label = "Sys";
             bindings = <
 // Ported from QMK layer 5 (System + Function keys)
-&bootloader  &studio_unlock  &kp F7  &kp F8  &kp F9  &kp F10    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &kp LC(LS(LG(N4)))
-&sys_reset   &none  &kp F4  &kp F5  &kp F6  &kp F11    &none         &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    &kp C_PP      &kp LG(LS(N4))
-&none        &none  &kp F1  &kp F2  &kp F3  &kp F12    &none         &none         &none         &none         &none         &kp LG(LS(N3))
+&bootloader  &sys_reset  &kp F7  &kp F8  &kp F9  &kp F10    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &kp LC(LS(LG(N4)))
+&ctrl_alt_del   &none  &kp F4  &kp F5  &kp F6  &kp F11    &none         &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    &kp C_PP      &kp LG(LS(N4))
+&none   &none  &kp F1  &kp F2  &kp F3  &kp F12    &none         &none         &none         &none         &none         &kp LG(LS(N3))
 #ifdef TBLE_DUAL_2U
 &bt BT_CLR   &none  &none   &none           &kp F13                  &none         &none         &none         &none         &kp LG(LS(N5))
 #elif defined(TBLE_MIT)
