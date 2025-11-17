@@ -134,11 +134,11 @@
 &kp LCTRL  &kp TAB   &kp HOME  &kp PG_DN &kp PG_UP &kp END      &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT  &kp SQT    &kp DQT
 &kp LGUI   &none     &none     &none     &kp TILDE &none        &none      &kp KP_SLASH     &none      &none      &none      &none
 #ifdef TBLE_DUAL_2U
-&none      &none     &kp LSHFT &kp LALT            &kp RET                  &kp RET    &none      &none      &none      &none
+&none     &none     &none     &kp LSHFT          &mt LALT RET           &none              &none     &none     &none     &none
 #elif defined(TBLE_MIT)
-&none      &none     &kp LSHFT &kp LALT  &kp RET           &kp RET                     &none      &none      &none      &none      &none
+&none     &none     &none     &kp LSHFT     &kp LALT           &kp RET           &none     &none     &none     &none     &none
 #else
-&none      &none     &none     &kp LSHFT &kp LALT  &kp RET   &kp RET        &none      &none      &none      &none      &none
+&none     &none     &none     &kp LSHFT     &kp LALT     &kp RET     &kp RET     &none     &none     &none     &none     &none
 #endif
             >;
         };
@@ -151,11 +151,11 @@
 &kp LCTRL  &kp LT    &kp LBRC  &kp RBRC  &kp GT    &kp LA(N3)    &kp UNDER &kp EQUAL &kp LBKT  &kp RBKT  &kp MINUS  &kp PIPE
 &kp LGUI   &none     &none     &none     &kp GRAVE &none         &none     &kp BSLH  &none     &none     &none      &none
 #ifdef TBLE_DUAL_2U
-&none      &none     &kp LSHFT &none               &kp ESC                 &kp ESC   &kp LALT  &mo SYS_L &none      &none
+&none     &none     &none     &kp LSHFT          &none                   &kp ESC           &kp LALT      &none     &none     &none
 #elif defined(TBLE_MIT)
-&none      &none     &kp LSHFT &none     &kp ESC           &kp ESC                   &kp LALT  &mo SYS_L &none     &none      &none
+&none     &none     &none     &kp LSHFT     &none           &kp ESC           &kp LALT     &mo SYS_L     &none     &none     &none
 #else
-&none      &none     &none     &kp LSHFT &none     &kp ESC   &kp ESC       &kp LALT  &none     &none     &none     &none
+&none     &none     &none     &kp LSHFT     &none     &kp ESC     &kp ESC     &kp LALT     &mo SYS_L     &none     &none     &none
 #endif
             >;
         };
@@ -168,11 +168,11 @@
 &ctrl_alt_del   &none  &kp F4  &kp F5  &kp F6  &kp F11    &kp C_MUTE         &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP    &none      &kp LG(LS(N4))
 &none   &none  &kp F1  &kp F2  &kp F3  &kp F12    &none         &none         &none         &none         &none         &kp LG(LS(N3))
 #ifdef TBLE_DUAL_2U
-&bt BT_CLR   &none  &none   &none         &kp F13         &kp LG(LS(N5))          &kp C_MUTE    &kp C_VOL_DN   &kp C_VOL_UP   &kp C_PP
+&bt BT_CLR     &none     &none     &none           &kp F13            &kp LG(LS(N5))            &kp C_MUTE     &kp C_VOL_DN     &kp C_VOL_UP     &kp C_PP
 #elif defined(TBLE_MIT)
-&bt BT_CLR   &none  &none   &none   &kp F13        &none        &kp LG(LS(N5))    &kp C_MUTE    &kp C_VOL_DN   &kp C_VOL_UP   &kp C_PP
+&bt BT_CLR     &none     &none     &none     &kp F13          &none          &kp LG(LS(N5))     &kp C_MUTE     &kp C_VOL_DN     &kp C_VOL_UP     &kp C_PP
 #else
-&bt BT_CLR   &none  &none   &none   &kp F13   &none    &none    &kp LG(LS(N5))    &kp C_MUTE    &kp C_VOL_DN   &kp C_VOL_UP   &kp C_PP
+&bt BT_CLR     &none     &none     &none     &kp F13     &none     &none     &kp LG(LS(N5))     &kp C_MUTE     &kp C_VOL_DN     &kp C_VOL_UP     &kp C_PP
 #endif
             >;
         };
