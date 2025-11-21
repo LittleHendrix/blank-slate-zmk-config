@@ -117,11 +117,11 @@
  &meh LC(LS(LALT)) ESC        &kp A  &hm LALT S  &hm LSHFT D  &kp F           &kp G            &kp H            &kp J        &hm RSHFT K  &hm LALT L    &hm RGUI SEMI     &hyper LC(LS(LA(LGUI))) QUOT
  &shifty                      &kp Z  &kp X       &kp C        &kp V           &kp B            &kp N            &kp M        &kp COMMA    &kp DOT       &kp FSLH          &kp RET
 #ifdef TBLE_DUAL_2U
- &mo SYS_L  &kp LCTRL  &kp LALT   &kp LGUI         &lt NUM_L BKSP                   &mt LCTRL SPACE             &mo NAV_L    &lt SYS_L LEFT  &kp DOWN  &kp UP  &kp RIGHT
+ &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI             &lt NUM_L BKSP               &lt NAV_L SPACE           &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
 #elif defined(TBLE_MIT)
- &mo SYS_L  &kp LCTRL  &kp LALT   &kp LGUI    &lt NUM_L BKSP     &mt LCTRL SPACE              &mo NAV_L    &lt SYS_L LEFT  &kp DOWN  &kp UP  &kp RIGHT
+ &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP           &mt LCTRL SPACE             &mo NAV_L   &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
 #else
- &mo SYS_L  &kp LCTRL  &kp LALT   &kp LGUI    &lt NUM_L BKSP  &mt LCTRL SPACE  &mt LCTRL SPACE  &mo NAV_L  &lt SYS_L LEFT  &kp DOWN  &kp UP  &kp RIGHT
+ &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP   &mt LCTRL SPACE   &mt LCTRL SPACE   &mo NAV_L   &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
 #endif
             >;
         };
