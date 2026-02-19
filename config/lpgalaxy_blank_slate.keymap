@@ -102,7 +102,7 @@
             tapping-term-ms = <250>;
             quick-tap-ms = <0>;
             flavor = "balanced";
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp>, <&caps_word>;
         };
     };
 
@@ -126,7 +126,7 @@
 // Ported from QMK drop_planck7.json layer 0
  &hyper LC(LS(LA(LGUI))) TAB  &kp Q    &kp W    &kp E    &kp R    &kp T    &kp Y    &kp U    &kp I    &kp O    &kp P    &kp BKSP
  &meh LC(LS(LALT)) ESC        &hm LGUI A   &hm LALT S   &hm LSHFT D   &hm LCTRL F   &kp G   &kp H   &kp J   &hm RSHFT K   &hm LALT L   &hm RGUI SEMI   &hyper LC(LS(LA(LGUI))) QUOT
- &mt_caps LSHFT CAPSLOCK           &kp Z  &kp X       &kp C        &kp V           &kp B            &kp N            &kp M        &kp COMMA    &kp DOT       &kp FSLH          &kp RET
+ &mt_caps LSHFT 0                  &kp Z  &kp X       &kp C        &kp V           &kp B            &kp N            &kp M        &kp COMMA    &kp DOT       &kp FSLH          &kp RET
 #ifdef TBLE_DUAL_2U
  &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI             &lt NUM_L BKSP               &lt NAV_L SPACE           &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
 #elif defined(TBLE_MIT)
