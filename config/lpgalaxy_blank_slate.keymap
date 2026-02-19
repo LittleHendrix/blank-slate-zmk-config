@@ -51,12 +51,12 @@
     
     tap_dances {
     	shifty: shift_caps_word {
-		compatible = "zmk,behavior-tap-dance";
-		label = "TD_SHIFTY";
-		#binding-cells = <0>;
-		tapping-term-ms = <250>;
-		bindings = <&kp LSHFT>, <&caps_word>;
-	};
+        compatible = "zmk,behavior-tap-dance";
+        label = "TD_SHIFTY";
+        #binding-cells = <0>;
+        tapping-term-ms = <250>;
+        bindings = <&kp LSHFT>, <&caps_word>;
+      };
     };
 
     behaviors {
@@ -99,7 +99,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "MT_CAPS";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <250>;
             quick-tap-ms = <0>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
