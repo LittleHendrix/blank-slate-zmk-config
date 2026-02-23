@@ -104,6 +104,18 @@
             flavor = "balanced";
             bindings = <&kp>, <&caps_word>;
         };
+
+        // Space/Control mod-tap tuned for fast typing (more affirmative holds)
+        mt_space: mt_space {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_SPACE";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <125>;
+            require-prior-idle-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
     };
 
 // Conditional layer only when we have less thumb keys
@@ -130,9 +142,9 @@
 #ifdef TBLE_DUAL_2U
  &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI             &lt NUM_L BKSP               &lt NAV_L SPACE           &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
 #elif defined(TBLE_MIT)
- &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP           &mt LCTRL SPACE             &mo NAV_L   &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
+ &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP           &mt_space LCTRL SPACE             &mo NAV_L   &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
 #else
- &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP   &mt LCTRL SPACE   &mt LCTRL SPACE   &mo NAV_L   &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
+ &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP   &mt_space LCTRL SPACE   &mt_space LCTRL SPACE   &mo NAV_L   &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
 #endif
             >;
         };
