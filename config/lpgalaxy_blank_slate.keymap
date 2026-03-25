@@ -177,9 +177,9 @@
 #ifdef TBLE_DUAL_2U
 &none              &none     &none     &kp LSHFT   &none            &kp ESC   &kp LALT   &none     &none     &none
 #elif defined(TBLE_MIT)
-&none              &none     &none     &kp LSHFT   &none            &kp ESC   &kp LALT   &mo SYS_L  &none     &none     &none
+&none              &none     &none     &kp LSHFT   &none            &kp ESC   &kp LALT   &none     &none     &none     &none
 #else
-&none              &none     &none     &kp LSHFT   &none            &kp ESC      &kp ESC      &kp LALT   &mo SYS_L  &none     &none     &none
+&none              &none     &none     &kp LSHFT   &none            &kp ESC      &kp ESC      &kp LALT   &none     &none     &none     &none
 #endif
             >;
         };
@@ -208,11 +208,11 @@
 &none  &none  &none  &none  &none  &none  &none      &none      &none      &none      &none      &none
 &none  &none  &none  &none  &none  &none  &none      &none      &none      &none      &none      &none
 #ifdef TBLE_DUAL_2U
-&none  &none  &none  &none  &none  &kp SPACE  &none      &none      &none      &none
+&none  &none  &none  &none  &none  &kp SPACE  &kp C_MUTE   &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP
 #elif defined(TBLE_MIT)
-&none  &none  &none  &none  &none  &kp SPACE  &none      &none      &none      &none      &none
+&none  &none  &none  &none  &none  &kp SPACE  &none      &kp C_MUTE   &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP
 #else
-&none  &none  &none  &none  &none  &kp SPACE  &kp SPACE  &none      &none      &none      &none      &none
+&none  &none  &none  &none  &none  &kp SPACE  &kp SPACE  &none      &kp C_MUTE   &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP
 #endif
             >;
         };
