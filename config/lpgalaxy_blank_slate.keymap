@@ -18,6 +18,7 @@
 #define NAV_L 1
 #define NUM_L 2
 #define SYS_L 3
+#define ETC_L 4
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
@@ -136,15 +137,15 @@
             label = "Base";
             bindings = <
 // Ported from QMK drop_planck7.json layer 0
- &hyper LC(LS(LA(LGUI))) TAB  &kp Q    &kp W    &kp E    &kp R    &kp T    &kp Y    &kp U    &kp I    &kp O    &kp P    &kp BKSP
- &meh LC(LS(LALT)) ESC        &hm LGUI A   &hm LALT S   &hm LSHFT D   &hm LCTRL F   &kp G   &kp H   &kp J   &hm RSHFT K   &hm LALT L   &hm RGUI SEMI   &hyper LC(LS(LA(LGUI))) QUOT
- &mt_caps LSHFT 0                  &kp Z  &kp X       &kp C        &kp V           &kp B            &kp N            &kp M        &kp COMMA    &kp DOT       &kp FSLH          &kp RET
+ &hyper LC(LS(LA(LGUI))) TAB  &kp Q         &kp W         &kp E         &kp R         &kp T         &kp Y         &kp U         &kp I         &kp O         &kp P         &kp BKSP
+ &meh LC(LS(LALT)) ESC        &hm LGUI A    &hm LALT S    &hm LSHFT D   &hm LCTRL F   &kp G         &kp H         &kp J         &hm RSHFT K   &hm LALT L    &hm RGUI SEMI &hyper LC(LS(LA(LGUI))) QUOT
+ &mt_caps LSHFT 0             &kp Z         &kp X         &kp C         &kp V         &kp B         &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH      &kp RET
 #ifdef TBLE_DUAL_2U
- &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI             &lt NUM_L BKSP               &lt NAV_L SPACE           &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
+ &mo ETC_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP   &lt NAV_L SPACE   &lt SYS_L LEFT   &kp DOWN      &kp UP        &kp RIGHT
 #elif defined(TBLE_MIT)
- &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP           &mt_space LCTRL SPACE             &mo NAV_L   &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
+ &mo ETC_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP   &mt_space LCTRL SPACE   &mo NAV_L      &lt SYS_L LEFT   &kp DOWN     &kp UP       &kp RIGHT
 #else
- &mo SYS_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP   &mt_space LCTRL SPACE   &mt_space LCTRL SPACE   &mo NAV_L   &lt SYS_L LEFT   &kp DOWN   &kp UP   &kp RIGHT
+ &mo ETC_L   &kp LCTRL   &kp LALT   &kp LGUI   &lt NUM_L BKSP   &mt_space LCTRL SPACE   &mt_space LCTRL SPACE   &mo NAV_L     &lt SYS_L LEFT   &kp DOWN     &kp UP       &kp RIGHT
 #endif
             >;
         };
@@ -153,15 +154,15 @@
             label = "Nav";
             bindings = <
 // Ported from QMK layer 3 (Nav + Symbols)
-&kp TILDE  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS  &kp ASTRK  &kp LPAR   &kp RPAR   &kp DEL
-&kp LCTRL  &kp TAB   &kp HOME  &kp PG_DN &kp PG_UP &kp END      &kp LEFT   &kp DOWN  &kp UP     &kp RIGHT  &kp SQT    &kp DQT
-&kp LGUI   &none     &none     &none     &kp TILDE &none        &none      &kp KP_SLASH     &none      &none      &none      &none
+&kp TILDE  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS      &kp ASTRK    &kp LPAR   &kp RPAR   &kp DEL
+&kp LCTRL  &kp TAB   &kp HOME  &kp PG_DN &kp PG_UP &kp END      &kp LEFT   &kp DOWN      &kp UP       &kp RIGHT  &kp SQT    &kp DQT
+&kp LGUI   &none     &none     &none     &kp TILDE &none        &none      &kp KP_SLASH  &none        &none      &none      &none
 #ifdef TBLE_DUAL_2U
-&none     &none     &none     &kp LSHFT          &mt LALT RET           &none              &none     &none     &none     &none
+&none      &none     &none     &kp LSHFT   &mt LALT RET   &none     &none     &none     &none     &none
 #elif defined(TBLE_MIT)
-&none     &none     &none     &kp LSHFT     &kp LALT           &kp RET           &none     &none     &none     &none     &none
+&none      &none     &none     &kp LSHFT   &kp LALT       &kp RET   &none     &none     &none     &none     &none
 #else
-&none     &none     &none     &kp LSHFT     &kp LALT     &kp RET     &kp RET     &none     &none     &none     &none     &none
+&none      &none     &none     &kp LSHFT   &kp LALT       &kp RET        &kp RET        &none     &none     &none     &none     &none
 #endif
             >;
         };
@@ -170,15 +171,15 @@
             label = "Num";
             bindings = <
 // Ported from QMK layer 4 (Num + Operators) - custom number layout
-&kp LC(LS(LALT))  &kp N5    &kp N2    &kp N3    &kp N4    &kp N1        &kp N0    &kp N7    &kp N8    &kp N9    &kp N6     &kp DEL
-&kp LCTRL  &kp LT    &kp LBRC  &kp RBRC  &kp GT    &kp LA(N3)    &kp UNDER &kp EQUAL &kp LBKT  &kp RBKT  &kp MINUS  &kp PIPE
-&kp LGUI   &none     &none     &none     &kp GRAVE &none         &none     &kp BSLH  &none     &none     &none      &none
+&kp LC(LS(LALT))  &kp N5    &kp N2    &kp N3    &kp N4    &kp N1      &kp N0      &kp N7      &kp N8      &kp N9      &kp N6      &kp DEL
+&kp LCTRL         &kp LT    &kp LBRC  &kp RBRC  &kp GT    &kp LA(N3)  &kp UNDER   &kp EQUAL   &kp LBKT    &kp RBKT    &kp MINUS   &kp PIPE
+&kp LGUI          &none     &none     &none     &kp GRAVE &none       &none       &kp BSLH    &none       &none       &none       &none
 #ifdef TBLE_DUAL_2U
-&none     &none     &none     &kp LSHFT          &none                   &kp ESC           &kp LALT      &none     &none     &none
+&none              &none     &none     &kp LSHFT   &none            &kp ESC   &kp LALT   &none     &none     &none
 #elif defined(TBLE_MIT)
-&none     &none     &none     &kp LSHFT     &none           &kp ESC           &kp LALT     &mo SYS_L     &none     &none     &none
+&none              &none     &none     &kp LSHFT   &none            &kp ESC   &kp LALT   &mo SYS_L  &none     &none     &none
 #else
-&none     &none     &none     &kp LSHFT     &none     &kp ESC     &kp ESC     &kp LALT     &mo SYS_L     &none     &none     &none
+&none              &none     &none     &kp LSHFT   &none            &kp ESC      &kp ESC      &kp LALT   &mo SYS_L  &none     &none     &none
 #endif
             >;
         };
@@ -187,15 +188,31 @@
             label = "Sys";
             bindings = <
 // Ported from QMK layer 5 (System + Function keys)
-&bootloader  &sys_reset  &kp F7  &kp F8  &kp F9  &kp F10    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &kp LC(LS(LG(N4)))
-&ctrl_alt_del   &none  &kp F4  &kp F5  &kp F6  &kp F11    &kp C_MUTE         &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP    &none      &kp LG(LS(N4))
-&none   &none  &kp F1  &kp F2  &kp F3  &kp F12    &none         &none         &none         &none         &none         &kp LG(LS(N3))
+&bootloader    &sys_reset  &kp F7  &kp F8  &kp F9  &kp F10   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &kp LC(LS(LG(N4)))
+&ctrl_alt_del  &none       &kp F4  &kp F5  &kp F6  &kp F11   &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP      &none         &kp LG(LS(N4))
+&none          &none       &kp F1  &kp F2  &kp F3  &kp F12   &none         &none         &none         &none         &none         &kp LG(LS(N3))
 #ifdef TBLE_DUAL_2U
-&bt BT_CLR     &none     &none     &none           &kp F13            &trans                    &kp C_MUTE     &kp C_VOL_DN     &kp C_VOL_UP     &kp C_PP
+&bt BT_CLR      &none      &none      &none      &kp F13      &LCTRL      &kp C_MUTE   &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP
 #elif defined(TBLE_MIT)
-&bt BT_CLR     &none     &none     &none     &kp F13          &trans         &kp LG(LS(N5))     &kp C_MUTE     &kp C_VOL_DN     &kp C_VOL_UP     &kp C_PP
+&bt BT_CLR      &none      &none      &none      &kp F13      &LCTRL      &kp LG(LS(N5))  &kp C_MUTE   &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP
 #else
-&bt BT_CLR     &none     &none     &none     &kp F13     &trans    &trans    &kp LG(LS(N5))     &kp C_MUTE     &kp C_VOL_DN     &kp C_VOL_UP     &kp C_PP
+&bt BT_CLR      &none      &none      &none      &kp F13      &LCTRL      &LCTRL          &kp LG(LS(N5))  &kp C_MUTE   &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP
+#endif
+            >;
+        };
+
+        etc_layer {
+            label = "Etc";
+            bindings = <
+&none  &none  &none  &none  &none  &none  &none      &none      &none      &none      &none      &none
+&none  &none  &none  &none  &none  &none  &none      &none      &none      &none      &none      &none
+&none  &none  &none  &none  &none  &none  &none      &none      &none      &none      &none      &none
+#ifdef TBLE_DUAL_2U
+&none  &none  &none  &none  &none  &kp SPACE  &none      &none      &none      &none
+#elif defined(TBLE_MIT)
+&none  &none  &none  &none  &none  &kp SPACE  &none      &none      &none      &none      &none
+#else
+&none  &none  &none  &none  &none  &kp SPACE  &kp SPACE  &none      &none      &none      &none      &none
 #endif
             >;
         };
