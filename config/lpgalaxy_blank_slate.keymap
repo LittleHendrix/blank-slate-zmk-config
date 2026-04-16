@@ -212,7 +212,7 @@
 #elif defined(TBLE_MIT)
 &none  &none  &none  &none  &none  &kp SPACE  &none      &none      &none      &none      &none
 #else
-&none  &none  &none  &none  &none  &kp SPACE  &kp SPACE  &none      &none      &none      &none      &none
+&none  &none  &none  &none  &none  &kp SPACE  &kp SPACE  &none  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP
 #endif
             >;
         };
